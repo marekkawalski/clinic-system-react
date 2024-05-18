@@ -1,0 +1,40 @@
+@use 'src/styles/abstracts/colors' as *;
+
+.features-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 4em;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 200;
+  padding-top: 30px;
+  word-spacing: 7px;
+  text-align: left;
+  line-height: normal;
+  min-height: 3em;
+}
+
+.feature {
+  p {
+    padding-top: 2em;
+  }
+}
+
+.border {
+  content: '';
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 20px;
+  border-bottom: 1px solid $primary;
+  transform: translateX(-50%);
+}
+
+.feature-icon {
+  color: $primary;
+  font-size: 2rem;
+  height: 2rem;
+  width: 2rem;
+}
