@@ -9,7 +9,7 @@ import {
   login as loginUtil,
   logout as logoutUtil,
 } from '../utilities/authUtils.ts';
-import { AuthContextProps } from '../model/AuthContextProps.ts';
+import { AuthContextProps } from '../models/AuthContextProps.ts';
 
 export const AuthContext = createContext<AuthContextProps | undefined>(
   undefined,

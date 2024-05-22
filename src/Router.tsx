@@ -10,6 +10,7 @@ import { SpinnerProvider } from './shared/spinner/context/SpinnerContext.tsx';
 import Login from './features/auth/login/pages/Login.tsx';
 import theme from './styles/theme.ts';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import Registration from './features/auth/registration/pages/Registration.tsx';
 
 export default function Router() {
   return (
@@ -23,6 +24,10 @@ export default function Router() {
                 <Route path='/' element={<Nav />}>
                   <Route index element={<Homepage />} />
                   <Route path={PathConstants.LOGIN_PATH} element={<Login />} />
+                  <Route
+                    path={PathConstants.REGISTER_PATH}
+                    element={<Registration />}
+                  />
                   <Route
                     path={PathConstants.MY_APPOINTMENTS_PATH}
                     element={<MyAppointments />}

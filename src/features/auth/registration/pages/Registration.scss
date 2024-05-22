@@ -1,0 +1,8 @@
+@use "src/styles/components/form/form-page" as *;
+
+.form-component-wrapper {
+  width: 100%;
+  display: flex;
+  padding-top: 3em;
+  justify-content: center;
+}

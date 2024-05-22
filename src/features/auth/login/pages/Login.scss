@@ -1,6 +1,9 @@
 @use "src/styles/components/form/form-page" as *;
 @use "src/styles/components/form/form" as *;
 
+.headline {
+  font-weight: 400 !important;
+}
 
 .sign-up {
   padding-top: 5em;

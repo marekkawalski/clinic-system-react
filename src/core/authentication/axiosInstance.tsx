@@ -12,20 +12,30 @@ const useAxiosInstance = () => {
   const { authData } = useAuth();
 
   const axiosInstance: AxiosInstance = useMemo(() => {
-    return axios.create({
+    const instance = axios.create({
       baseURL: API_URL,
       headers: {
-        Authorization: authData
-          ? `Basic ${window.btoa(authData.email + ':' + authData.password)}`
-          : '',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     });
+
+    instance.interceptors.request.use(config => {
+      const newConfig = { ...config };
+      if (authData) {
+        newConfig.headers.Authorization = `Basic ${window.btoa(authData.email + ':' + authData.password)}`;
+      } else {
+        delete newConfig.headers.Authorization;
+      }
+      return newConfig;
+    });
+
+    return instance;
   }, [authData]);
 
   useEffect(() => {
     const responseInterceptor = axiosInstance.interceptors.response.use(
       response => {
-        console.log('Response:', response); // Log response details
         return response;
       },
       error => {
