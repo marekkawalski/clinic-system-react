@@ -1,4 +1,5 @@
-@use "styles/abstracts/colors" as *;
+@use "src/styles/abstracts/colors" as *;
+
 
 .form-card-wrapper {
   width: 100%;
@@ -13,34 +14,12 @@
   width: min(400px, 80%);
 }
 
-mat-card {
+.login-card {
   text-align: center;
   opacity: 0.93;
   padding: 20px;
-  min-height: 700px;
+  min-height: 500px;
 }
-
-mat-card-title {
-  font-size: 250%;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-mat-form-field {
-  display: block;
-}
-
-mat-card-content {
-  padding: 2px;
-}
-
-
-h2 {
-  color: $my-white;
-}
-
-
-$border-rounded: 6px;
 
 .container {
   display: flex;
@@ -49,35 +28,5 @@ $border-rounded: 6px;
   align-content: center;
   padding: 6%;
   margin: 0;
-
 }
 
-.button-container {
-  .button {
-    width: 200px;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1em;
-    text-transform: uppercase;
-    color: $my-white;
-    border-radius: $border-rounded;
-    margin: 10px;
-    padding: 1em 3em;
-    background-size: 200% auto;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    background-image: linear-gradient(
-                    to right,
-                    #673ab7 0%,
-                    #7c4dff 50%,
-                    #673ab7 100%
-    );
-    transition: 0.5s;
-
-    &:hover {
-      background-position: right center;
-      cursor: pointer;
-    }
-  }
-}

@@ -13,7 +13,7 @@
 
 html {
   font-weight: 300;
-  font-size: 20px;
+  font-size: 18px;
   text-rendering: optimizeLegibility;
 }
 
@@ -87,52 +87,10 @@ a {
   color: unset;
 }
 
-.green-snackbar {
-  background: rgb(4, 165, 66);
-  color: white;
-}
-
-.green-snackbar button {
-  background: rgb(4, 165, 66);
-  color: white;
-  border: none;
-}
-
-.red-snackbar {
-  background: #F44336;
-  color: white;
-}
-
-.red-snackbar button {
-  background-color: #F44336;
-  color: white !important;
-  border: none;
-}
-
-.blue-snackbar {
-  background: #2196F3;
-  color: white;
-}
-
-.blue-snackbar button {
-  background-color: #2196F3;
-  color: white !important;
-  border: none;
-}
-
 h2 {
   text-transform: capitalize;
   font-size: 3rem !important;
   letter-spacing: normal;
   text-align: center;
   padding: 1em;
-}
-
-.mdc-dialog__content {
-  overflow: unset !important;
-}
-
-.mat-mdc-dialog-content {
-  padding: 0 !important;
-  margin: 0 !important;
 }

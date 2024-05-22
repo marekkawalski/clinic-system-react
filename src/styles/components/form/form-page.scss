@@ -1,11 +1,13 @@
-@use "styles/abstracts/colors" as *;
+@use "src/styles/abstracts/colors" as *;
 
-h1 {
-  font-size: 2.5rem;
-  letter-spacing: 0.07rem;
+
+.headline {
   color: $my-white;
-  padding-bottom: 30px;
-  padding-top: 2em;
+  letter-spacing: 0.07rem;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 0;
+  font-size: 4rem !important;
 }
 
 .headlines-wrapper {
@@ -14,7 +16,7 @@ h1 {
 
 .form-page {
   background-image: linear-gradient(rgba(0, 0, 0, 0.236), rgba(0, 0, 0, 0.485)),
-  url("/assets/images/clinic.jpg");
+  url("/src/assets/images/clinic.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,14 +27,4 @@ h1 {
   width: 100%;
   height: 100vh;
   gap: 50px;
-}
-
-mat-hint,
-.sign-up {
-  button {
-    margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    color: $my-black;
-  }
 }

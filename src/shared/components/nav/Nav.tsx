@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -11,14 +11,19 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import NavItem from './NavItem.tsx';
 import { AppBar, DrawerHeader, drawerWidth, Main } from './Nav.styles.tsx';
 import { navItems } from './navItems.ts';
+import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
+import { Button } from '@mui/material';
+import { PathConstants } from '../../../core/constants/path.constants.ts';
 
 export default function Nav() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const { authData, logout } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -42,9 +47,46 @@ export default function Nav() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            Clinic System
-          </Typography>
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Typography variant='h6' noWrap component='div'>
+              Clinic System
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: '1.2em',
+                alignItems: 'center',
+              }}
+            >
+              <Typography variant='h6' noWrap component='div'>
+                Hello,{' '}
+                {authData ? authData.name + ' ' + authData.surname : 'Guest'}
+              </Typography>
+              {authData ? (
+                <Button
+                  color='secondary'
+                  variant='contained'
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  color='secondary'
+                  variant='contained'
+                  onClick={() => navigate(PathConstants.LOGIN_PATH)}
+                >
+                  Login
+                </Button>
+              )}
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer

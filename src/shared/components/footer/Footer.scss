@@ -1,7 +1,7 @@
 @use 'src/styles/abstracts/colors' as *;
 
 .footer {
-  background-color: $primary;
+  background-color: $secondary;
   color: white;
   padding: 1em;
   text-align: center;
@@ -18,7 +18,7 @@
     padding-bottom: 1em;
     padding-top: 0.4em;
   }
-  
+
   .mat-icon {
     font-size: 2rem;
     height: 2rem;

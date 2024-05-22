@@ -2,13 +2,14 @@ import axios, { AxiosInstance } from 'axios';
 import { PathConstants } from '../constants/path.constants';
 import { useEffect, useMemo } from 'react';
 import { useSnackbar } from '../../shared/snackbar/hooks/useSnackBar';
-import { getAuthData, logout } from './utilities/authUtils.ts';
+import { logout } from './utilities/authUtils.ts';
+import { useAuth } from './hooks/useAuth.tsx';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const useAxiosInstance = () => {
   const { showSnackbar } = useSnackbar();
-  const authData = getAuthData();
+  const { authData } = useAuth();
 
   const axiosInstance: AxiosInstance = useMemo(() => {
     return axios.create({

@@ -7,30 +7,36 @@ import { PathConstants } from './core/constants/path.constants.ts';
 import SnackbarProvider from './shared/snackbar/context/SnackBarContext.tsx';
 import Doctors from './features/doctors/pages/doctors/Doctors.tsx';
 import { SpinnerProvider } from './shared/spinner/context/SpinnerContext.tsx';
+import Login from './features/auth/login/pages/Login.tsx';
+import theme from './styles/theme.ts';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 export default function Router() {
   return (
-    <SpinnerProvider>
-      <SnackbarProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              <Route path='/' element={<Nav />}>
-                <Route index element={<Homepage />} />
-                <Route path={PathConstants.LOGIN_PATH} element={<Homepage />} />
-                <Route
-                  path={PathConstants.MY_APPOINTMENTS_PATH}
-                  element={<MyAppointments />}
-                />
-                <Route
-                  path={PathConstants.DOCTORS_PATH}
-                  element={<Doctors />}
-                />
-              </Route>
-            </Routes>
-          </AuthProvider>
-        </BrowserRouter>
-      </SnackbarProvider>
-    </SpinnerProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <SpinnerProvider>
+        <SnackbarProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <Routes>
+                <Route path='/' element={<Nav />}>
+                  <Route index element={<Homepage />} />
+                  <Route path={PathConstants.LOGIN_PATH} element={<Login />} />
+                  <Route
+                    path={PathConstants.MY_APPOINTMENTS_PATH}
+                    element={<MyAppointments />}
+                  />
+                  <Route
+                    path={PathConstants.DOCTORS_PATH}
+                    element={<Doctors />}
+                  />
+                </Route>
+              </Routes>
+            </AuthProvider>
+          </BrowserRouter>
+        </SnackbarProvider>
+      </SpinnerProvider>
+    </ThemeProvider>
   );
 }

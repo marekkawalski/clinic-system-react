@@ -39,7 +39,7 @@ const Doctors: React.FC = () => {
   }, [getDoctors]);
 
   return (
-    <section>
+    <section className='doctors-wrapper'>
       <Typography variant='h2' gutterBottom>
         Meet our doctors
       </Typography>
