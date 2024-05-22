@@ -1,8 +1,9 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { PathConstants } from '../../constants/path.constants.ts';
 import { UserRole } from '../../enums/UserRole.ts';
+import { useSnackbar } from '../../../shared/snackbar/hooks/useSnackBar.tsx';
+import { PathConstants } from '../../constants/path.constants.ts';
 
 interface WithAuthProps {
   expectedRoles?: UserRole[];
@@ -14,18 +15,26 @@ const withAuth = <P extends object>(
 ): React.FC<P & WithAuthProps> => {
   const AuthWrapper: React.FC<P & WithAuthProps> = props => {
     const { authData, checkAccess } = useAuth();
+    const { showSnackbar } = useSnackbar();
+    const [redirectPath, setRedirectPath] = useState<string | null>(null);
 
-    if (!authData) {
-      // User is not authenticated
-      return <Navigate to={PathConstants.LOGIN_PATH} replace />;
+    useEffect(() => {
+      if (!authData) {
+        showSnackbar('You must login to enter this route!', 'error');
+        setRedirectPath(PathConstants.LOGIN_PATH);
+      } else if (expectedRoles && !checkAccess(expectedRoles)) {
+        showSnackbar(
+          'You do not have permission to enter this route!',
+          'error',
+        );
+        setRedirectPath(PathConstants.LOGIN_PATH);
+      }
+    }, [authData, checkAccess, showSnackbar]);
+
+    if (redirectPath) {
+      return <Navigate to={redirectPath} replace />;
     }
 
-    if (expectedRoles && !checkAccess(expectedRoles)) {
-      // User is authenticated but does not have the required role
-      return <Navigate to={PathConstants.LOGIN_PATH} replace />;
-    }
-
-    // User is authenticated and has the required role
     return <WrappedComponent {...props} />;
   };
 

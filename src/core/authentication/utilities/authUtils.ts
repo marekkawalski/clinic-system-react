@@ -4,7 +4,7 @@ import { UserRole } from '../../enums/UserRole.ts';
 import { User } from '../../models/user/User.ts';
 
 const AUTH_DATA_KEY = 'authData';
-const API_URL = import.meta.env.API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAuthData = (): AuthData | null => {
   const authData = sessionStorage.getItem(AUTH_DATA_KEY);
