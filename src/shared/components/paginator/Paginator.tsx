@@ -1,24 +1,31 @@
 import React from 'react';
 import {
+  Box,
   FormControl,
   InputLabel,
   MenuItem,
   Pagination,
   Select,
   SelectChangeEvent,
+  SxProps,
+  Theme,
 } from '@mui/material';
 import { PageRequestParams } from '../../model/PageRequestParams';
+import { PageRequestResponseData } from '../../model/PageRequestResponseData.ts';
+import './Paginator.scss';
 
 interface PaginatorComponentProps {
   onPageChange: (params: PageRequestParams) => void;
-  data: { totalPages: number };
+  data?: PageRequestResponseData<unknown>;
   requestParams: PageRequestParams;
+  sx?: SxProps<Theme>;
 }
 
 const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
   onPageChange,
   data,
   requestParams = { 'page-size': 10, 'page-num': 0 },
+  sx,
 }) => {
   const handlePageChange = (
     _event: React.ChangeEvent<unknown>,
@@ -35,8 +42,9 @@ const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
     });
   };
 
+  if (!data) return <div></div>;
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <Box className='paginator-wrapper' sx={sx}>
       <FormControl
         variant='outlined'
         style={{ minWidth: 120, marginRight: 20 }}
@@ -58,8 +66,9 @@ const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
         count={data.totalPages - 1}
         page={requestParams['page-num'] ?? 0}
         onChange={handlePageChange}
+        sx={{ marginTop: 5, marginBottom: 10 }}
       />
-    </div>
+    </Box>
   );
 };
 

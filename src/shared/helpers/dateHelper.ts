@@ -3,16 +3,27 @@ import { PageRequestResponseData } from '../model/PageRequestResponseData.ts';
 export class DateHelper<T> {
   convertDateStringsToDates(
     response: PageRequestResponseData<T>,
-    dateKeys: string[],
+    dateKeys: (keyof T)[],
   ): PageRequestResponseData<T> {
-    response.content = response.content.map((item: any) => {
-      dateKeys.forEach((key: any) => {
-        if (item[key] && typeof item[key] === 'string') {
-          item[key] = new Date(item[key]);
-        }
-      });
-      return item;
+    if (!response?.content) return response;
+
+    const convertedContent = response.content.map(item =>
+      this.convertItemDates(item, dateKeys),
+    );
+
+    return { ...response, content: convertedContent };
+  }
+
+  private convertItemDates(item: T, dateKeys: (keyof T)[]): T {
+    const newItem = { ...item };
+
+    dateKeys.forEach(key => {
+      const dateValue = newItem[key];
+      if (typeof dateValue === 'string') {
+        newItem[key] = new Date(dateValue) as unknown as T[keyof T];
+      }
     });
-    return response;
+
+    return newItem;
   }
 }

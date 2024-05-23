@@ -17,7 +17,6 @@ import {
 } from '@mui/material';
 import { z } from 'zod';
 import { useUser } from '../../../core/hooks/useUser.tsx';
-import { userFormSchema } from './validation/userFormSchema.tsx';
 import { useRegister } from '../../../core/authentication/hooks/useRegister.tsx';
 import { UserRole } from '../../../core/enums/UserRole.ts';
 import { UserFormData } from './models/UserFormData.ts';
@@ -25,21 +24,27 @@ import { UserToAddOrUpdate } from '../../../core/models/user/UserToAddOrUpdate.t
 import './UserForm.scss';
 import { useSnackbar } from '../../snackbar/hooks/useSnackBar.tsx';
 import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
+import { FormType } from '../../enums/FormType.ts';
+import { userFormSchema } from './validation/userFormSchema.tsx';
 
-type registrationFormInputs = z.infer<typeof userFormSchema>;
+type UserFormSchema = ReturnType<typeof userFormSchema>;
+type userFormInputs = z.infer<UserFormSchema>;
 
-const UserForm: React.FC<{ userId?: string; action: string }> = ({
-  userId,
-  action,
-}) => {
+const UserForm: React.FC<{
+  userId?: string;
+  action: string;
+  children?: React.ReactNode;
+  formType: FormType;
+  onClose?: () => void;
+}> = ({ userId, action, children, formType = FormType.PopupForm, onClose }) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
     watch,
     reset,
-  } = useForm<registrationFormInputs>({
-    resolver: zodResolver(userFormSchema),
+  } = useForm<userFormInputs>({
+    resolver: zodResolver(userFormSchema(!userId)),
     defaultValues: {
       basicData: {
         name: '',
@@ -119,12 +124,14 @@ const UserForm: React.FC<{ userId?: string; action: string }> = ({
       surname: formData.basicData.surname,
       email: formData.basicData.email,
       pesel: formData.basicData.pesel,
-      password: formData.basicData.password,
       address: formData.address,
       role: formData.adminManagedData.role,
       isEnabled: formData.adminManagedData.enabled,
     };
 
+    if (formData.basicData.password) {
+      data.password = formData.basicData.password;
+    }
     if (formData.basicData.phoneNumber) {
       data.phoneNumber = formData.basicData.phoneNumber;
     }
@@ -138,10 +145,15 @@ const UserForm: React.FC<{ userId?: string; action: string }> = ({
 
     if (userId) {
       const response = await updateUser(data, userId);
-      showSnackbar(
-        `User ${response.name} ${response.surname} updated successfully`,
-        'success',
-      );
+      if (response) {
+        showSnackbar(
+          `User ${response.name} ${response.surname} updated successfully`,
+          'success',
+        );
+      }
+      if (formType === FormType.PopupForm && onClose) {
+        onClose();
+      }
       return;
     }
     const response = await register(data);
@@ -151,15 +163,22 @@ const UserForm: React.FC<{ userId?: string; action: string }> = ({
         'success',
       );
     }
+    if (formType === FormType.PopupForm && onClose) {
+      onClose();
+    }
   };
 
   return (
-    <div className='whole-page-form'>
+    <div
+      className={
+        formType === FormType.PopupForm ? 'popup-form' : 'whole-page-form'
+      }
+    >
       <Card>
         <Box m={2}>
           <CardHeader title={action} />
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form id='userForm' onSubmit={handleSubmit(onSubmit)}>
               <div className='form-grid '>
                 <div>
                   <FormControl fullWidth margin='normal'>
@@ -451,9 +470,11 @@ const UserForm: React.FC<{ userId?: string; action: string }> = ({
                 </div>
               </div>
               <Box mt={4}>
-                <Button type='submit' variant='contained' color='primary'>
-                  Submit
-                </Button>
+                {children || (
+                  <Button type='submit' variant='contained' color='primary'>
+                    Submit
+                  </Button>
+                )}
               </Box>
             </form>
           </CardContent>

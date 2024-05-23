@@ -4,9 +4,9 @@ export interface PageRequestResponseData<T> {
   last: boolean;
   number: number;
   numberOfElements: number;
-  pageable: any;
+  pageable: unknown;
   size: number;
-  sort: any;
+  sort: unknown;
   totalElements: number;
   totalPages: number;
   content: T[];

@@ -1,0 +1,7 @@
+@use "src/styles/abstracts" as *;
+@use "src/styles/components/table" as *;
+@use "/src/styles/abstracts/colors" as *;
+
+.table-wrapper {
+  padding-bottom: 2em;
+}

@@ -18,8 +18,7 @@ const Doctors: React.FC = () => {
   const [userRequestParams, setUserRequestParams] = useState<PageRequestParams>(
     {},
   );
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-  const [totalPages, setTotalPages] = useState<number>(0);
+  const [data, setData] = useState<PageRequestResponseData<Doctor>>();
   const { showSpinner, hideSpinner } = useSpinner();
 
   const getDoctors = useCallback(async () => {
@@ -27,8 +26,7 @@ const Doctors: React.FC = () => {
     try {
       const data: PageRequestResponseData<Doctor> =
         await fetchPagedDoctors(userRequestParams);
-      setDoctors(data.content);
-      setTotalPages(data.totalPages);
+      setData(data);
     } finally {
       hideSpinner();
     }
@@ -46,10 +44,10 @@ const Doctors: React.FC = () => {
       <div className='doctors'>
         <PaginatorComponent
           onPageChange={setUserRequestParams}
-          data={{ totalPages }}
+          data={data}
           requestParams={userRequestParams}
         />
-        {doctors.map((doctor: Doctor) => (
+        {data?.content.map((doctor: Doctor) => (
           <div key={doctor.id} className='doctor'>
             <div className='doctor-image'>
               <img
@@ -115,7 +113,7 @@ const Doctors: React.FC = () => {
         ))}
         <PaginatorComponent
           onPageChange={setUserRequestParams}
-          data={{ totalPages }}
+          data={data}
           requestParams={userRequestParams}
         />
       </div>

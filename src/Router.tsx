@@ -11,6 +11,7 @@ import Login from './features/auth/login/pages/Login.tsx';
 import theme from './styles/theme.ts';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import Registration from './features/auth/registration/pages/Registration.tsx';
+import ManageUsers from './features/manage-users/pages/ManageUsers.tsx';
 
 export default function Router() {
   return (
@@ -35,6 +36,10 @@ export default function Router() {
                   <Route
                     path={PathConstants.DOCTORS_PATH}
                     element={<Doctors />}
+                  />
+                  <Route
+                    path={PathConstants.MANAGE_USERS_PATH}
+                    element={<ManageUsers />}
                   />
                 </Route>
               </Routes>
