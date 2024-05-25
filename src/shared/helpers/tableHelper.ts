@@ -1,4 +1,6 @@
 import { PageRequestResponseData } from '../model/PageRequestResponseData.ts';
+import { format } from 'date-fns';
+import { ReactNode } from 'react';
 
 export class TableHelper {
   private _baseColumnTitles: string[] = [];
@@ -31,13 +33,20 @@ export class TableHelper {
     this._baseColumnNames = value;
   }
 
-  nestedPropertyAccessor<T>(item: T, path: string): unknown {
-    return path.split('.').reduce((obj, key) => {
+  nestedPropertyAccessor<T>(item: T, path: string): ReactNode {
+    const value = path.split('.').reduce((obj, key) => {
       if (obj && typeof obj === 'object' && key in obj) {
         return (obj as { [key: string]: unknown })[key];
       }
       return undefined;
     }, item as unknown);
+
+    // Handle date formatting if the column is date
+    if (path === 'date' && value) {
+      return format(new Date(value as string), 'MM/dd/yyyy HH:mm');
+    }
+
+    return value ? String(value) : null;
   }
 
   setBaseColumnNames(columns: string[]): void {
