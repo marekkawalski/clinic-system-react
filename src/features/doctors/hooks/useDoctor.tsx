@@ -5,10 +5,11 @@ import { DailySchedule } from '../../../core/models/user/Schedule.ts';
 import { UserPageRequestParams } from '../../../shared/model/UserPageRequestParams.ts';
 import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
 import { HttpParamsHelper } from '../../../shared/helpers/httpParamsHelper.ts';
+import { AvailableAppointments } from '../model/AvailableAppointments.ts';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const useDoctors = () => {
+export const useDoctor = () => {
   const httpParamsHelper = useMemo(() => new HttpParamsHelper(), []);
   const { axiosInstance } = useAxiosInstance();
 
@@ -62,26 +63,26 @@ export const useDoctors = () => {
     [axiosInstance],
   );
 
-  // const fetchAvailableAppointments = useCallback(
-  //   async (
-  //     doctorId: string,
-  //     examinationId: string,
-  //     date: string,
-  //   ): Promise<AvailableAppointments[]> => {
-  //     const response = await axiosInstance.get<AvailableAppointments[]>(
-  //       `${apiUrl}/doctors/${doctorId}/examinations/${examinationId}/available-appointments/date/${date}`,
-  //     );
-  //     return response.data.map((aa: { date: string | number | Date }) => {
-  //       aa.date = new Date(aa.date);
-  //       return aa;
-  //     });
-  //   },
-  //   [axiosInstance],
-  // );
+  const fetchAvailableAppointments = useCallback(
+    async (
+      doctorId: string,
+      examinationId: string,
+      date: string,
+    ): Promise<AvailableAppointments[]> => {
+      const response = await axiosInstance.get<AvailableAppointments[]>(
+        `/doctors/${doctorId}/examinations/${examinationId}/available-appointments/date/${date}`,
+      );
+      return response.data.map(appointment => {
+        appointment.date = new Date(appointment.date);
+        return appointment;
+      });
+    },
+    [axiosInstance],
+  );
 
   return {
     fetchPagedDoctors,
     fetchDoctorByEmail,
-    // fetchAvailableAppointments,
+    fetchAvailableAppointments,
   };
 };

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDoctors } from '../../hooks/useDoctors';
+import { useDoctor } from '../../hooks/useDoctor.tsx';
 import { PathConstants } from '../../../../core/constants/path.constants.ts';
 import { UserRole } from '../../../../core/enums/UserRole.ts';
 import { PageRequestParams } from '../../../../shared/model/PageRequestParams.ts';
@@ -14,7 +14,7 @@ import './Doctors.scss';
 import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner.tsx';
 
 const Doctors: React.FC = () => {
-  const { fetchPagedDoctors } = useDoctors();
+  const { fetchPagedDoctors } = useDoctor();
   const [userRequestParams, setUserRequestParams] = useState<PageRequestParams>(
     {},
   );
@@ -57,9 +57,7 @@ const Doctors: React.FC = () => {
             </div>
             <div className='doctor-info'>
               <Typography variant='h5' component='h3'>
-                <Link
-                  to={`${PathConstants.DOCTOR_DETAILS_PATH}/${doctor.email}`}
-                >
+                <Link to={`${doctor.email}`}>
                   {doctor.name} {doctor.surname}
                 </Link>
               </Typography>
