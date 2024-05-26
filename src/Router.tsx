@@ -13,6 +13,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import Registration from './features/auth/registration/pages/Registration.tsx';
 import ManageUsers from './features/manage-users/pages/ManageUsers.tsx';
 import DoctorDetails from './features/doctors/pages/doctor-details/DoctorDetails.tsx';
+import ManageAppointments from './features/manage-appointments/pages/ManageAppointments.tsx';
 
 export default function Router() {
   return (
@@ -45,6 +46,10 @@ export default function Router() {
                   <Route
                     path={PathConstants.MANAGE_USERS_PATH}
                     element={<ManageUsers />}
+                  />
+                  <Route
+                    path={PathConstants.MANAGE_APPOINTMENTS_PATH}
+                    element={<ManageAppointments />}
                   />
                 </Route>
               </Routes>

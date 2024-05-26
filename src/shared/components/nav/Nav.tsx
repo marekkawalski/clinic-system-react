@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -18,13 +18,29 @@ import { navItems } from './navItems.ts';
 import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
 import { Button } from '@mui/material';
 import { PathConstants } from '../../../core/constants/path.constants.ts';
+import { UserRole } from '../../../core/enums/UserRole.ts';
 
 export default function Nav() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { authData, logout } = useAuth();
   const [open, setOpen] = useState(false);
+  const [allNavItems, setAllNavItems] = useState(navItems);
 
+  useEffect(() => {
+    if (authData) {
+      setAllNavItems([
+        ...navItems,
+        {
+          listItemText: 'Manage appointments',
+          listItemPath: `manage-appointments/${authData.id}`,
+          requireLogin: true,
+          allowedRoles: [UserRole.DOCTOR],
+        },
+      ]);
+    }
+  }, [authData]);
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -113,7 +129,7 @@ export default function Nav() {
         </DrawerHeader>
         <Divider />
         <List>
-          {navItems.map((navItem, index) => (
+          {allNavItems.map((navItem, index) => (
             <NavItem
               key={index}
               listItemText={navItem.listItemText}
