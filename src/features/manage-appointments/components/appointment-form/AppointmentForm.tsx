@@ -43,7 +43,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
     setValue,
   } = useForm<AppointmentToAddOrUpdate>({
     defaultValues: {
-      date: '',
+      date: new Date(),
       status: AppointmentStatus.BOOKED,
       description: '',
       medicines: [],

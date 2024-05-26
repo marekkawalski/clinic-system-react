@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Box,
   IconButton,
-  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -21,6 +20,7 @@ import { AppointmentPageRequestParams } from '../../../shared/model/AppointmentP
 import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
 import { Appointment } from '../../../core/models/appointment/Appointment.ts';
 import AppointmentForm from '../components/appointment-form/AppointmentForm.tsx';
+import PaginatorComponent from '../../../shared/components/paginator/Paginator.tsx';
 
 const ManageAppointments: React.FC = () => {
   const { showSnackbar } = useSnackbar();
@@ -29,7 +29,7 @@ const ManageAppointments: React.FC = () => {
   const { id: doctorId } = useParams<{ id: string }>();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [pageAppointmentResponseData, setPageAppointmentResponseData] =
-    useState<PageRequestResponseData<Appointment> | null>(null);
+    useState<PageRequestResponseData<Appointment> | undefined>(undefined);
   const [requestParams, setRequestParams] =
     useState<AppointmentPageRequestParams>({});
   const tableHelper = useMemo(() => new TableHelper(), []);
@@ -147,10 +147,10 @@ const ManageAppointments: React.FC = () => {
               ))}
             </TableBody>
           </Table>
-          <Pagination
-            count={pageAppointmentResponseData?.totalPages || 1}
-            page={requestParams['page-num'] ?? 0}
-            onChange={handlePageChange}
+          <PaginatorComponent
+            data={pageAppointmentResponseData}
+            onPageChange={handlePageChange}
+            requestParams={requestParams}
           />
         </TableContainer>
       ) : (
