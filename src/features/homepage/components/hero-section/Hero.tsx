@@ -1,7 +1,7 @@
 import './Hero.scss';
-import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { PathConstants } from '../../../../core/constants/path.constants.ts';
+import { Button } from '@mui/material';
 
 function Hero() {
   return (
@@ -12,7 +12,7 @@ function Hero() {
           variant='contained'
           color='primary'
           component={Link}
-          to={PathConstants.DOCTORS_PATH}
+          to={'/' + PathConstants.DOCTORS_PATH}
         >
           Schedule appointment
         </Button>

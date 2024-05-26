@@ -6,12 +6,12 @@ import { UserRole } from '../../../../core/enums/UserRole.ts';
 import { PageRequestParams } from '../../../../shared/model/PageRequestParams.ts';
 import PaginatorComponent from '../../../../shared/components/paginator/Paginator.tsx';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { Doctor } from '../../../../core/models/Doctor.ts';
 import { checkAccess } from '../../../../core/authentication/utilities/authUtils.ts';
 import { PageRequestResponseData } from '../../../../shared/model/PageRequestResponseData.ts';
 import './Doctors.scss';
 import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner.tsx';
+import { Button } from '@mui/material';
 
 const Doctors: React.FC = () => {
   const { fetchPagedDoctors } = useDoctor();
@@ -52,7 +52,7 @@ const Doctors: React.FC = () => {
             <div className='doctor-image'>
               <img
                 alt={doctor.name}
-                src='src/assets/images/female-doctor.jpg'
+                src='src/assets/images/female-doctor.webp'
               />
             </div>
             <div className='doctor-info'>

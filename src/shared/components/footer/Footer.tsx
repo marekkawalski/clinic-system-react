@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           alt='line'
           className='line doctor-img'
           height='4812'
-          src='src/assets/images/medical-doctor.png'
+          src='src/assets/images/medical-doctor.webp'
           width='2863'
         />
         <div className='contact-info'>

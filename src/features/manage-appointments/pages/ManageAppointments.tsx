@@ -94,7 +94,7 @@ const ManageAppointments: React.FC = () => {
         options: { title: 'Edit Appointment', width: '700px', height: '700px' },
       });
     },
-    [openDialog, loadAppointments],
+    [openDialog, handleClose],
   );
 
   useEffect(() => {

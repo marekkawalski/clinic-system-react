@@ -106,7 +106,7 @@ const ManageUsersPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetchPagedUsers(requestParams);
+    fetchPagedUsers(requestParams).then(() => {});
   }, [fetchPagedUsers, requestParams]);
 
   const handlePageChange = useCallback((params: UserPageRequestParams) => {
@@ -132,16 +132,6 @@ const ManageUsersPage: React.FC = () => {
     setSelectedUser(null);
     setOpenEditDialog(false);
   };
-  // const handleOpenAddDialog = () => setOpenAddDialog(true);
-  // const handleCloseAddDialog = () => setOpenAddDialog(false);
-  //
-  // const handleOpenEditDialog = (user: User) => {
-  //
-  // };
-  // const handleCloseEditDialog = () => {
-  //   setSelectedUser(null);
-  //   setOpenEditDialog(false);
-  // };
 
   return (
     <Container maxWidth='xl'>

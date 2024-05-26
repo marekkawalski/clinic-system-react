@@ -49,7 +49,7 @@ const DoctorDetails: React.FC = () => {
           <Box className='doctor-image'>
             <img
               alt={`${doctor.name} ${doctor.surname}`}
-              src='/src/assets/images/female-doctor.jpg'
+              src='/src/assets/images/female-doctor.webp'
             />
           </Box>
 
