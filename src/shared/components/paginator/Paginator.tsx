@@ -10,9 +10,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { PageRequestParams } from '../../model/PageRequestParams';
-import { PageRequestResponseData } from '../../model/PageRequestResponseData.ts';
 import './Paginator.scss';
+import { PageRequestParams } from '@/shared/model/PageRequestParams.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
 
 interface PaginatorComponentProps {
   onPageChange: (params: PageRequestParams) => void;

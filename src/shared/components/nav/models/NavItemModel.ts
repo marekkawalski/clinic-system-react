@@ -1,4 +1,4 @@
-import { UserRole } from '../../../../core/enums/UserRole.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 export interface NavItemModel {
   listItemText: string;

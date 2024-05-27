@@ -16,16 +16,16 @@ import {
   TextField,
 } from '@mui/material';
 import { z } from 'zod';
-import { useUser } from '../../../core/hooks/useUser.tsx';
-import { useRegister } from '../../../core/authentication/hooks/useRegister.tsx';
-import { UserRole } from '../../../core/enums/UserRole.ts';
+import { useUser } from '@/core/hooks/useUser.tsx';
+import { useRegister } from '@/core/authentication/hooks/useRegister.tsx';
+import { UserRole } from '@/core/enums/UserRole.ts';
 import { UserFormData } from './models/UserFormData.ts';
-import { UserToAddOrUpdate } from '../../../core/models/user/UserToAddOrUpdate.ts';
+import { UserToAddOrUpdate } from '@/core/models/user/UserToAddOrUpdate.ts';
 import './UserForm.scss';
-import { useSnackbar } from '../../snackbar/hooks/useSnackBar.tsx';
-import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
-import { FormType } from '../../enums/FormType.ts';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
 import { userFormSchema } from './validation/userFormSchema.tsx';
+import { FormType } from '@/shared/enums/FormType.ts';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
 
 type UserFormSchema = ReturnType<typeof userFormSchema>;
 type userFormInputs = z.infer<UserFormSchema>;

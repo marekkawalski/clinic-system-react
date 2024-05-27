@@ -19,10 +19,10 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
-import { PathConstants } from '../../../../core/constants/path.constants.ts';
-import { useAuth } from '../../../../core/authentication/hooks/useAuth.tsx';
-import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner.tsx';
-import { useSnackbar } from '../../../../shared/snackbar/hooks/useSnackBar.tsx';
+import { PathConstants } from '@/core/constants/path.constants.ts';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),

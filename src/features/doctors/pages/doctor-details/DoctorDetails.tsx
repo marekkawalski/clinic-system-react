@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { Doctor } from '../../../../core/models/Doctor';
-import { useDoctor } from '../../hooks/useDoctor';
-import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner';
-import DoctorInfo from '../../components/doctor-info/DoctorInfo.tsx';
-import DoctorSchedule from '../../components/doctor-schedule/DoctorSchedule.tsx';
-import Examinations from '../../components/examinations/Examinations.tsx';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 import './DoctorDetails.scss';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-import ScheduleAppointment from '../../components/schedule-appointment/ScheduleAppointment.tsx';
+import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
+import DoctorInfo from '@/features/doctors/components/doctor-info/DoctorInfo.tsx';
+import Examinations from '@/features/doctors/components/examinations/Examinations.tsx';
+import DoctorSchedule from '@/features/doctors/components/doctor-schedule/DoctorSchedule.tsx';
+import ScheduleAppointment from '@/features/doctors/components/schedule-appointment/ScheduleAppointment.tsx';
 
 const DoctorDetails: React.FC = () => {
   const { email } = useParams<{ email: string }>();

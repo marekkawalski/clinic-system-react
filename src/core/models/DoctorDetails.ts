@@ -1,4 +1,4 @@
-import { Schedule } from './user/Schedule';
+import { Schedule } from '@/core/models/user/Schedule.ts';
 
 export interface DoctorDetails {
   specialization?: string;

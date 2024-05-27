@@ -1,7 +1,7 @@
-import { AppointmentStatus } from '../../enums/AppointmentStatus';
-import { User } from '../user/User';
 import { Examination } from '../Examination';
 import { Medicine } from './Medicine';
+import { User } from '@/core/models/user/User.ts';
+import { AppointmentStatus } from '@/core/enums/AppointmentStatus.ts';
 
 export interface Appointment {
   readonly id: string;

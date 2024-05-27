@@ -11,17 +11,17 @@ import {
   Typography,
 } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Appointment } from '../../../core/models/appointment/Appointment';
-import { AppointmentStatus } from '../../../core/enums/AppointmentStatus';
-import withAuth from '../../../core/authentication/hoc/withAuth.tsx';
-import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
-import { useSnackbar } from '../../../shared/snackbar/hooks/useSnackBar.tsx';
-import { useAppointment } from '../../../shared/hooks/useAppointment.tsx';
-import { PageRequestParams } from '../../../shared/model/PageRequestParams.ts';
-import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
-import { TableHelper } from '../../../shared/helpers/tableHelper.ts';
+import { Appointment } from '@/core/models/appointment/Appointment.ts';
+import { AppointmentStatus } from '@/core/enums/AppointmentStatus.ts';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAppointment } from '@/shared/hooks/useAppointment.tsx';
+import { PageRequestParams } from '@/shared/model/PageRequestParams.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { TableHelper } from '@/shared/helpers/tableHelper.ts';
 import PaginatorComponent from '../../../shared/components/paginator/Paginator.tsx';
-import { ExaminationPageRequestParams } from '../../../shared/model/ExaminationPageRequestParams.ts';
+import { ExaminationPageRequestParams } from '@/shared/model/ExaminationPageRequestParams.ts';
+import withAuth from '@/core/authentication/hoc/withAuth.tsx';
 
 const MyAppointments: React.FC = () => {
   const { authData } = useAuth();

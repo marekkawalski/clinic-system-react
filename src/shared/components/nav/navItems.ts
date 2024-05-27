@@ -1,6 +1,6 @@
 import { NavItemModel } from './models/NavItemModel.ts';
-import { PathConstants } from '../../../core/constants/path.constants.ts';
-import { UserRole } from '../../../core/enums/UserRole.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 export const navItems: NavItemModel[] = [
   {

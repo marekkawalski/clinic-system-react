@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react';
-import useAxiosInstance from '../../../core/authentication/axiosInstance.tsx';
-import { Doctor } from '../../../core/models/Doctor.ts';
-import { DailySchedule } from '../../../core/models/user/Schedule.ts';
-import { UserPageRequestParams } from '../../../shared/model/UserPageRequestParams.ts';
-import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
-import { HttpParamsHelper } from '../../../shared/helpers/httpParamsHelper.ts';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { DailySchedule } from '@/core/models/user/Schedule.ts';
+import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { HttpParamsHelper } from '@/shared/helpers/httpParamsHelper.ts';
 import { AvailableAppointments } from '../model/AvailableAppointments.ts';
+import useAxiosInstance from '@/core/authentication/axiosInstance.tsx';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 

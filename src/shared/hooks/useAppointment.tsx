@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
 import { HttpParamsHelper } from '../helpers/httpParamsHelper';
-import { AppointmentToAddOrUpdate } from '../../core/models/appointment/AppointmentToAddOrUpdate';
-import { Appointment } from '../../core/models/appointment/Appointment';
+import { AppointmentToAddOrUpdate } from '@/core/models/appointment/AppointmentToAddOrUpdate.ts';
+import { Appointment } from '@/core/models/appointment/Appointment.ts';
 import { AppointmentPageRequestParams } from '../model/AppointmentPageRequestParams.ts';
 import { PageRequestResponseData } from '../model/PageRequestResponseData.ts';
-import useAxiosInstance from '../../core/authentication/axiosInstance.tsx';
+import useAxiosInstance from '@/core/authentication/axiosInstance.tsx';
 
 export const useAppointment = () => {
   const httpParamsHelper = useMemo(() => new HttpParamsHelper(), []);

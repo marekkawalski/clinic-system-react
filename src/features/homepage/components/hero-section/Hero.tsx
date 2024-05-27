@@ -1,6 +1,6 @@
 import './Hero.scss';
 import { Link } from 'react-router-dom';
-import { PathConstants } from '../../../../core/constants/path.constants.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
 import { Button } from '@mui/material';
 
 function Hero() {

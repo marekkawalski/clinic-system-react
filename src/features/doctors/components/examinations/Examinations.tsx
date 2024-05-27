@@ -9,17 +9,17 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { Doctor } from '../../../../core/models/Doctor';
-import { TableHelper } from '../../../../shared/helpers/tableHelper';
-import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner';
-import { useExamination } from '../../hooks/useExamination';
-import { Examination } from '../../../../core/models/Examination';
-import { useSnackbar } from '../../../../shared/snackbar/hooks/useSnackBar';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { TableHelper } from '@/shared/helpers/tableHelper.ts';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
+import { Examination } from '@/core/models/Examination.ts';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
 
-import PaginatorComponent from '../../../../shared/components/paginator/Paginator.tsx';
-import { PageRequestResponseData } from '../../../../shared/model/PageRequestResponseData.ts';
-import { ExaminationPageRequestParams } from '../../../../shared/model/ExaminationPageRequestParams.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { ExaminationPageRequestParams } from '@/shared/model/ExaminationPageRequestParams.ts';
 import './Examinations.scss';
+import { useExamination } from '@/features/doctors/hooks/useExamination.tsx';
+import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 
 interface ExaminationsProps {
   doctor: Doctor;

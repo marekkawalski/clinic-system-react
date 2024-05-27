@@ -1,4 +1,4 @@
-import { ExaminationStatus } from '../enums/ExaminationStatus';
+import { ExaminationStatus } from '@/core/enums/ExaminationStatus.ts';
 
 export interface Examination {
   readonly id: string;

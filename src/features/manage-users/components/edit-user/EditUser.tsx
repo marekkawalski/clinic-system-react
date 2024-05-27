@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Dialog, DialogActions, DialogContent } from '@mui/material';
-import { User } from '../../../../core/models/user/User.ts';
-import UserForm from '../../../../shared/components/user-form/UserForm.tsx';
-import { FormType } from '../../../../shared/enums/FormType.ts';
+import { User } from '@/core/models/user/User.ts';
+import { FormType } from '@/shared/enums/FormType.ts';
+import UserForm from '@/shared/components/user-form/UserForm';
 
 interface EditUserComponentProps {
   open: boolean;

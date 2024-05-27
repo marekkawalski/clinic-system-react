@@ -1,6 +1,6 @@
-import { AuthData } from '../../models/AuthData.ts';
-import { User } from '../../models/user/User.ts';
-import { UserRole } from '../../enums/UserRole.ts';
+import { AuthData } from '@/core/models/AuthData.ts';
+import { User } from '@/core/models/user/User.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 export interface AuthContextProps {
   authData: AuthData | null;

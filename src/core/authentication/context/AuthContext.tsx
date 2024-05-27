@@ -1,15 +1,15 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import { getAuthData } from '../utilities/authUtils';
-import { useNavigate } from 'react-router-dom';
-import { AuthData } from '../../models/AuthData.ts';
-import { UserRole } from '../../enums/UserRole.ts';
-import { PathConstants } from '../../constants/path.constants.ts';
 import {
   checkAccess as checkAccessUtil,
+  getAuthData,
   login as loginUtil,
   logout as logoutUtil,
-} from '../utilities/authUtils.ts';
-import { AuthContextProps } from '../models/AuthContextProps.ts';
+} from '@/core/authentication/utilities/authUtils.ts';
+import { AuthData } from '@/core/models/AuthData.ts';
+import { useNavigate } from 'react-router-dom';
+import { PathConstants } from '@/core/constants/path.constants.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
+import { AuthContextProps } from '@/core/authentication/models/AuthContextProps.ts';
 
 export const AuthContext = createContext<AuthContextProps | undefined>(
   undefined,

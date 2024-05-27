@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { HttpParamsHelper } from '../../shared/helpers/httpParamsHelper';
-import useAxiosInstance from '../authentication/axiosInstance.tsx';
-import { User } from '../models/user/User.ts';
-import { PageRequestResponseData } from '../../shared/model/PageRequestResponseData.ts';
-import { UserToAddOrUpdate } from '../models/user/UserToAddOrUpdate.ts';
-import { UserPageRequestParams } from '../../shared/model/UserPageRequestParams.ts';
-import { useSpinner } from '../../shared/spinner/hooks/useSpinner.tsx';
-import { DateHelper } from '../../shared/helpers/dateHelper.ts';
+import { HttpParamsHelper } from '@/shared/helpers/httpParamsHelper.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
+import { DateHelper } from '@/shared/helpers/dateHelper.ts';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
+import useAxiosInstance from '@/core/authentication/axiosInstance.tsx';
+import { User } from '@/core/models/user/User.ts';
+import { UserToAddOrUpdate } from '@/core/models/user/UserToAddOrUpdate.ts';
 
 export const useUser = () => {
   const { showSpinner, hideSpinner } = useSpinner();

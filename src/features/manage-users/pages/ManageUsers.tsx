@@ -14,17 +14,17 @@ import {
   Typography,
 } from '@mui/material';
 import { Add, Edit } from '@mui/icons-material';
-import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
-import { UserPageRequestParams } from '../../../shared/model/UserPageRequestParams.ts';
-import { User } from '../../../core/models/user/User.ts';
-import { useUser } from '../../../core/hooks/useUser.tsx';
-import { TableHelper } from '../../../shared/helpers/tableHelper.ts';
-import withAuth from '../../../core/authentication/hoc/withAuth.tsx';
-import { UserRole } from '../../../core/enums/UserRole.ts';
-import PaginatorComponent from '../../../shared/components/paginator/Paginator.tsx';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
+import { User } from '@/core/models/user/User.ts';
+import { useUser } from '@/core/hooks/useUser.tsx';
+import { TableHelper } from '@/shared/helpers/tableHelper.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 import './ManageUsers.scss';
-import { useSpinner } from '../../../shared/spinner/hooks/useSpinner.tsx';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 import EditUserComponent from '../components/edit-user/EditUser.tsx';
+import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
+import withAuth from '@/core/authentication/hoc/withAuth.tsx';
 
 const ManageUsersPage: React.FC = () => {
   const { getPagedUsers } = useUser();

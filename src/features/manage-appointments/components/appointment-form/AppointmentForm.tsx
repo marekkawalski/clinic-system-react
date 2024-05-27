@@ -14,12 +14,12 @@ import {
 } from '@mui/material';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import AddIcon from '@mui/icons-material/Add';
-import { useSnackbar } from '../../../../shared/snackbar/hooks/useSnackBar';
-import { useAppointment } from '../../../../shared/hooks/useAppointment';
-import { Appointment } from '../../../../core/models/appointment/Appointment';
-import { AppointmentStatus } from '../../../../core/enums/AppointmentStatus';
-import { Medicine } from '../../../../core/models/appointment/Medicine';
-import { AppointmentToAddOrUpdate } from '../../../../core/models/appointment/AppointmentToAddOrUpdate';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAppointment } from '@/shared/hooks/useAppointment.tsx';
+import { Appointment } from '@/core/models/appointment/Appointment.ts';
+import { AppointmentStatus } from '@/core/enums/AppointmentStatus.ts';
+import { Medicine } from '@/core/models/appointment/Medicine.ts';
+import { AppointmentToAddOrUpdate } from '@/core/models/appointment/AppointmentToAddOrUpdate.ts';
 
 interface AppointmentFormProps {
   appointment: Appointment;

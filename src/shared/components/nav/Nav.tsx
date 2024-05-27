@@ -15,10 +15,10 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import NavItem from './NavItem.tsx';
 import { AppBar, DrawerHeader, drawerWidth, Main } from './Nav.styles.tsx';
 import { navItems } from './navItems.ts';
-import { useAuth } from '../../../core/authentication/hooks/useAuth.tsx';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
 import { Button } from '@mui/material';
-import { PathConstants } from '../../../core/constants/path.constants.ts';
-import { UserRole } from '../../../core/enums/UserRole.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 export default function Nav() {
   const theme = useTheme();
@@ -40,7 +40,7 @@ export default function Nav() {
       ]);
     }
   }, [authData]);
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };

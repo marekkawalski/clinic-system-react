@@ -9,9 +9,9 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { Doctor } from '../../../../core/models/Doctor';
-import { TableHelper } from '../../../../shared/helpers/tableHelper.ts';
-import { DailySchedule } from '../../../../core/models/user/Schedule.ts';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { TableHelper } from '@/shared/helpers/tableHelper.ts';
+import { DailySchedule } from '@/core/models/user/Schedule.ts';
 import './DoctorSchedule.scss';
 
 interface DoctorScheduleProps {

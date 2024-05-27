@@ -1,5 +1,5 @@
 import React from 'react';
-import { Doctor } from '../../../../core/models/Doctor';
+import { Doctor } from '@/core/models/Doctor.ts';
 import { Box, Typography } from '@mui/material';
 import StethoscopeCheckIcon from '@mui/icons-material/MedicalServices';
 import SchoolIcon from '@mui/icons-material/School';

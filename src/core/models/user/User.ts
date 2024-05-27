@@ -1,6 +1,6 @@
-import { UserRole } from '../../enums/UserRole';
 import { Address } from '../Address';
 import { DoctorDetails } from '../DoctorDetails';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 export interface User {
   id: string;

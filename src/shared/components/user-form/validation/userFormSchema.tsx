@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { userFormValidationConstants } from './userFormValidationConstants.ts';
-import { UserRole } from '../../../../core/enums/UserRole.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 import { passwordStrengthValidator } from './passwordStrengthValidator.ts';
 
 export const userFormSchema = (isNewUser: boolean) =>

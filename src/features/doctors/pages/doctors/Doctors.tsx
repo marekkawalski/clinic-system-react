@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDoctor } from '../../hooks/useDoctor.tsx';
-import { PathConstants } from '../../../../core/constants/path.constants.ts';
-import { UserRole } from '../../../../core/enums/UserRole.ts';
-import { PageRequestParams } from '../../../../shared/model/PageRequestParams.ts';
-import PaginatorComponent from '../../../../shared/components/paginator/Paginator.tsx';
+import { PathConstants } from '@/core/constants/path.constants.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
+import { PageRequestParams } from '@/shared/model/PageRequestParams.ts';
 import Typography from '@mui/material/Typography';
-import { Doctor } from '../../../../core/models/Doctor.ts';
-import { checkAccess } from '../../../../core/authentication/utilities/authUtils.ts';
-import { PageRequestResponseData } from '../../../../shared/model/PageRequestResponseData.ts';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { checkAccess } from '@/core/authentication/utilities/authUtils.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
 import './Doctors.scss';
-import { useSpinner } from '../../../../shared/spinner/hooks/useSpinner.tsx';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 import { Button } from '@mui/material';
+import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
+import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 
 const Doctors: React.FC = () => {
   const { fetchPagedDoctors } = useDoctor();
@@ -33,7 +33,7 @@ const Doctors: React.FC = () => {
   }, [fetchPagedDoctors, hideSpinner, showSpinner, userRequestParams]);
 
   useEffect(() => {
-    getDoctors();
+    getDoctors().then(() => {});
   }, [getDoctors]);
 
   return (

@@ -10,18 +10,18 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { format } from 'date-fns';
-import { useSnackbar } from '../../../../shared/snackbar/hooks/useSnackBar';
-import { useExamination } from '../../hooks/useExamination';
-import { useAppointment } from '../../../../shared/hooks/useAppointment';
-import { Doctor } from '../../../../core/models/Doctor';
-import { Examination } from '../../../../core/models/Examination';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAppointment } from '@/shared/hooks/useAppointment.tsx';
+import { Doctor } from '@/core/models/Doctor.ts';
+import { Examination } from '@/core/models/Examination.ts';
 import { AvailableAppointments } from '../../model/AvailableAppointments';
-import { AppointmentToAddOrUpdate } from '../../../../core/models/appointment/AppointmentToAddOrUpdate';
-import { AppointmentStatus } from '../../../../core/enums/AppointmentStatus';
-import { useAuth } from '../../../../core/authentication/hooks/useAuth';
-import { useDoctor } from '../../hooks/useDoctor';
+import { AppointmentToAddOrUpdate } from '@/core/models/appointment/AppointmentToAddOrUpdate.ts';
+import { AppointmentStatus } from '@/core/enums/AppointmentStatus.ts';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './ScheduleAppointment.scss';
+import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
+import { useExamination } from '@/features/doctors/hooks/useExamination.tsx';
 
 interface ScheduleAppointmentProps {
   doctor: Doctor;

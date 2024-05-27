@@ -11,16 +11,16 @@ import {
   Typography,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import { useSnackbar } from '../../../shared/snackbar/hooks/useSnackBar';
-import { useAppointment } from '../../../shared/hooks/useAppointment';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAppointment } from '@/shared/hooks/useAppointment.tsx';
 import { useParams } from 'react-router-dom';
-import { TableHelper } from '../../../shared/helpers/tableHelper';
-import { useFormDialog } from '../../../shared/hooks/useFormDialog.tsx';
-import { AppointmentPageRequestParams } from '../../../shared/model/AppointmentPageRequestParams.ts';
-import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
-import { Appointment } from '../../../core/models/appointment/Appointment.ts';
+import { TableHelper } from '@/shared/helpers/tableHelper.ts';
+import { useFormDialog } from '@/shared/hooks/useFormDialog.tsx';
+import { AppointmentPageRequestParams } from '@/shared/model/AppointmentPageRequestParams.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { Appointment } from '@/core/models/appointment/Appointment.ts';
 import AppointmentForm from '../components/appointment-form/AppointmentForm.tsx';
-import PaginatorComponent from '../../../shared/components/paginator/Paginator.tsx';
+import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 
 const ManageAppointments: React.FC = () => {
   const { showSnackbar } = useSnackbar();

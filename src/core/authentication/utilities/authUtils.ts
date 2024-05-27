@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { AuthData } from '../../models/AuthData.ts';
-import { UserRole } from '../../enums/UserRole.ts';
-import { User } from '../../models/user/User.ts';
+import { AuthData } from '@/core/models/AuthData.ts';
+import { User } from '@/core/models/user/User.ts';
+import { UserRole } from '@/core/enums/UserRole.ts';
 
 const AUTH_DATA_KEY = 'authData';
 const API_URL = import.meta.env.VITE_API_URL;

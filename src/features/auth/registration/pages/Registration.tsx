@@ -1,6 +1,6 @@
-import UserForm from '../../../../shared/components/user-form/UserForm.tsx';
 import './Registration.scss';
-import { FormType } from '../../../../shared/enums/FormType.ts';
+import { FormType } from '@/shared/enums/FormType.ts';
+import UserForm from '@/shared/components/user-form/UserForm.tsx';
 
 function Registration() {
   return (

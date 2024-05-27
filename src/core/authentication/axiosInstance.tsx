@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import { PathConstants } from '../constants/path.constants';
 import { useEffect, useMemo } from 'react';
-import { useSnackbar } from '../../shared/snackbar/hooks/useSnackBar';
-import { logout } from './utilities/authUtils.ts';
-import { useAuth } from './hooks/useAuth.tsx';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
+import { logout } from '@/core/authentication/utilities/authUtils.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

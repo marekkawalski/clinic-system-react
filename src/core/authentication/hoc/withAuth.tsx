@@ -1,9 +1,9 @@
 import React, { ComponentType, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { UserRole } from '../../enums/UserRole.ts';
-import { useSnackbar } from '../../../shared/snackbar/hooks/useSnackBar.tsx';
-import { PathConstants } from '../../constants/path.constants.ts';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
+import { UserRole } from '@/core/enums/UserRole.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
 
 interface WithAuthProps {
   expectedRoles?: UserRole[];

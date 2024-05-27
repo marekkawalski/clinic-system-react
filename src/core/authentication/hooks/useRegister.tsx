@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { UserToAddOrUpdate } from '../../models/user/UserToAddOrUpdate.ts';
-import { User } from '../../models/user/User.ts';
-import { useSpinner } from '../../../shared/spinner/hooks/useSpinner.tsx';
-import useAxiosInstance from '../axiosInstance.tsx';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
+import { User } from '@/core/models/user/User.ts';
+import useAxiosInstance from '@/core/authentication/axiosInstance.tsx';
+import { UserToAddOrUpdate } from '@/core/models/user/UserToAddOrUpdate.ts';
 
 export const useRegister = () => {
   const [data, setData] = useState<User | null>(null);

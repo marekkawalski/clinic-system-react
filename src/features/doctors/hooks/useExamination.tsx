@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
-import { HttpParamsHelper } from '../../../shared/helpers/httpParamsHelper';
-import { Examination } from '../../../core/models/Examination';
-import { PageRequestResponseData } from '../../../shared/model/PageRequestResponseData.ts';
-import { ExaminationPageRequestParams } from '../../../shared/model/ExaminationPageRequestParams.ts';
-import useAxiosInstance from '../../../core/authentication/axiosInstance.tsx';
+import { HttpParamsHelper } from '@/shared/helpers/httpParamsHelper.ts';
+import { Examination } from '@/core/models/Examination.ts';
+import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
+import { ExaminationPageRequestParams } from '@/shared/model/ExaminationPageRequestParams.ts';
+import useAxiosInstance from '@/core/authentication/axiosInstance.tsx';
 
 export const useExamination = () => {
   const httpParamsHelper = useMemo(() => new HttpParamsHelper(), []);
