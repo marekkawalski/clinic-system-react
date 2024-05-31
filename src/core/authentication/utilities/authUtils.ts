@@ -2,6 +2,7 @@ import axios from 'axios';
 import { AuthData } from '@/core/models/AuthData.ts';
 import { User } from '@/core/models/user/User.ts';
 import { UserRole } from '@/core/enums/UserRole.ts';
+import { PathConstants } from '@/core/constants/path.constants.ts';
 
 const AUTH_DATA_KEY = 'authData';
 const API_URL = import.meta.env.VITE_API_URL;
@@ -33,6 +34,9 @@ export const login = async (email: string, password: string): Promise<User> => {
 
 export const logout = () => {
   setAuthData(null);
+  setTimeout(() => {
+    window.location.href = PathConstants.LOGIN_PATH;
+  }, 3000);
 };
 
 export const checkAccess = (allowedRoles: UserRole[]): boolean => {
