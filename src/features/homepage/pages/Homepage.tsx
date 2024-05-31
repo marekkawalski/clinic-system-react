@@ -7,7 +7,7 @@ export default function Homepage() {
     <>
       <Hero />
       <FeaturesSection />
-      <Footer />)
+      <Footer />
     </>
   );
 }
