@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   Box,
   Button,
@@ -38,11 +44,12 @@ const ManageUsersPage: React.FC = () => {
   const [showDisabled, setShowDisabled] = useState<boolean>(false);
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const isFirstRender = useRef(true);
 
-  const fetchPagedUsers = useCallback(
-    async (params: UserPageRequestParams) => {
-      showSpinner();
-      const data = await getPagedUsers(params);
+  const fetchPagedUsers = useCallback(async () => {
+    showSpinner();
+    try {
+      const data = await getPagedUsers(requestParams);
       setDataSource(data.content);
       setPageUserResponseData(data);
       tableHelper.setSpecifiedBaseColumnNamesFromRequestData(
@@ -87,30 +94,33 @@ const ManageUsersPage: React.FC = () => {
         },
       );
       tableHelper.setAllColumnNames(['edit']);
+    } finally {
       hideSpinner();
-    },
-    [getPagedUsers, hideSpinner, showSpinner, tableHelper],
-  );
+    }
+  }, [getPagedUsers, hideSpinner, requestParams, showSpinner, tableHelper]);
 
   useEffect(() => {
     const showDisabled = localStorage.getItem('show-disabled');
     if (showDisabled) {
-      setShowDisabled(showDisabled === 'true');
+      setRequestParams(prevParams => ({
+        ...prevParams,
+        'show-disabled': showDisabled === 'true',
+      }));
     }
-    const initialParams = {
-      'page-size': 10,
-      'page-num': 0,
-      'show-disabled': showDisabled === 'true',
-    };
-    setRequestParams(initialParams);
   }, []);
 
   useEffect(() => {
-    fetchPagedUsers(requestParams).then(() => {});
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    fetchPagedUsers();
   }, [fetchPagedUsers, requestParams]);
 
-  const handlePageChange = useCallback((params: UserPageRequestParams) => {
-    setRequestParams(params);
+  const handlePageChange = useCallback((params?: UserPageRequestParams) => {
+    if (params) {
+      setRequestParams(params);
+    }
   }, []);
 
   const handleToggleDisabled = () => {
@@ -162,6 +172,11 @@ const ManageUsersPage: React.FC = () => {
         </Typography>
       ) : (
         <Box>
+          <PaginatorComponent
+            onPageChange={handlePageChange}
+            data={pageUserResponseData}
+            requestParams={requestParams}
+          />
           <TableContainer className='table-wrapper'>
             <Table className='mat-elevation-z8'>
               <TableHead>

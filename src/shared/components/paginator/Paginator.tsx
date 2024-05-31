@@ -15,7 +15,7 @@ import { PageRequestParams } from '@/shared/model/PageRequestParams.ts';
 import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
 
 interface PaginatorComponentProps {
-  onPageChange: (params: PageRequestParams) => void;
+  onPageChange: (params?: PageRequestParams) => void;
   data?: PageRequestResponseData<unknown>;
   requestParams: PageRequestParams;
   sx?: SxProps<Theme>;

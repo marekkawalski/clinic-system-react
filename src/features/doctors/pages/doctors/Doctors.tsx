@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PathConstants } from '@/core/constants/path.constants.ts';
 import { UserRole } from '@/core/enums/UserRole.ts';
 import { PageRequestParams } from '@/shared/model/PageRequestParams.ts';
 import Typography from '@mui/material/Typography';
@@ -12,6 +11,7 @@ import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 import { Button } from '@mui/material';
 import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
 import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
+import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
 
 const Doctors: React.FC = () => {
   const { fetchPagedDoctors } = useDoctor();
@@ -36,6 +36,14 @@ const Doctors: React.FC = () => {
     getDoctors().then(() => {});
   }, [getDoctors]);
 
+  const handlePageChange = useCallback(
+    (userRequestParams?: UserPageRequestParams) => {
+      if (!userRequestParams) return;
+      setUserRequestParams(userRequestParams);
+    },
+    [],
+  );
+
   return (
     <section className='doctors-wrapper'>
       <Typography variant='h2' gutterBottom>
@@ -43,7 +51,7 @@ const Doctors: React.FC = () => {
       </Typography>
       <div className='doctors'>
         <PaginatorComponent
-          onPageChange={setUserRequestParams}
+          onPageChange={handlePageChange}
           data={data}
           requestParams={userRequestParams}
         />
@@ -93,7 +101,7 @@ const Doctors: React.FC = () => {
               <Button
                 variant='contained'
                 component={Link}
-                to={`${PathConstants.DOCTOR_DETAILS_PATH}/${doctor.email}`}
+                to={`${doctor.email}`}
               >
                 Schedule Appointment
               </Button>
@@ -110,7 +118,7 @@ const Doctors: React.FC = () => {
           </div>
         ))}
         <PaginatorComponent
-          onPageChange={setUserRequestParams}
+          onPageChange={handlePageChange}
           data={data}
           requestParams={userRequestParams}
         />

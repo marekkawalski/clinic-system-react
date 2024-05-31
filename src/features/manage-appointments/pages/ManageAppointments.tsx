@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   Box,
   IconButton,
@@ -33,6 +39,7 @@ const ManageAppointments: React.FC = () => {
   const [requestParams, setRequestParams] =
     useState<AppointmentPageRequestParams>({});
   const tableHelper = useMemo(() => new TableHelper(), []);
+  const isFirstRender = useRef(true);
 
   const loadAppointments = useCallback(async () => {
     if (!doctorId) return;
@@ -98,11 +105,16 @@ const ManageAppointments: React.FC = () => {
   );
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     loadAppointments().then(() => {});
   }, [loadAppointments]);
 
   const handlePageChange = useCallback(
-    (params: AppointmentPageRequestParams) => {
+    (params?: AppointmentPageRequestParams) => {
+      if (!params) return;
       setRequestParams(params);
     },
     [],
