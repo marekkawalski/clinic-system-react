@@ -31,6 +31,7 @@ import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 import EditUserComponent from '../components/edit-user/EditUser.tsx';
 import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 import withAuth from '@/core/authentication/hoc/withAuth.tsx';
+import AddUserComponent from '@/features/manage-users/components/add-user/AddUser.tsx';
 
 const ManageUsersPage: React.FC = () => {
   const { getPagedUsers } = useUser();
@@ -43,6 +44,7 @@ const ManageUsersPage: React.FC = () => {
   const [requestParams, setRequestParams] = useState<UserPageRequestParams>({});
   const [showDisabled, setShowDisabled] = useState<boolean>(false);
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
+  const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const isFirstRender = useRef(true);
 
@@ -143,13 +145,21 @@ const ManageUsersPage: React.FC = () => {
     setOpenEditDialog(false);
   };
 
+  const handleOpenAddDialog = () => {
+    setOpenAddDialog(true);
+  };
+
+  const handleCloseAddDialog = () => {
+    setOpenAddDialog(false);
+  };
+
   return (
     <Container maxWidth='xl'>
       <Typography variant='h2'>Manage Users</Typography>
       <Box className='actions-section'>
         <Box>
           <Button
-            // onClick={handleOpenAddDialog}
+            onClick={handleOpenAddDialog}
             color='primary'
             variant='contained'
             startIcon={<Add />}
@@ -221,6 +231,10 @@ const ManageUsersPage: React.FC = () => {
             open={openEditDialog}
             onClose={handleCloseEditDialog}
             user={selectedUser}
+          />
+          <AddUserComponent
+            open={openAddDialog}
+            onClose={handleCloseAddDialog}
           />
         </Box>
       )}
