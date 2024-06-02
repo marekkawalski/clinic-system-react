@@ -18,10 +18,10 @@ import { AvailableAppointments } from '../../model/AvailableAppointments';
 import { AppointmentToAddOrUpdate } from '@/core/models/appointment/AppointmentToAddOrUpdate.ts';
 import { AppointmentStatus } from '@/core/enums/AppointmentStatus.ts';
 import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './ScheduleAppointment.scss';
 import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
 import { useExamination } from '@/features/doctors/hooks/useExamination.tsx';
+import { StaticDatePicker } from '@mui/x-date-pickers';
 
 interface ScheduleAppointmentProps {
   doctor: Doctor;
@@ -153,25 +153,14 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
     <>
       {authData ? (
         <Box className='appointment-wrapper'>
-          <Typography variant='h3'>Schedule an appointment</Typography>
           <form onSubmit={handleSubmit(onSubmit)} className='form'>
+            <Typography variant='h3'>Schedule an appointment</Typography>
             <FormControl fullWidth margin='normal'>
               <Controller
                 name='date'
                 control={control}
                 rules={{ required: 'Appointment date is required' }}
-                render={({ field }) => (
-                  <DatePicker
-                    {...field}
-                    slotProps={{
-                      textField: {
-                        label: 'Appointment date',
-                        error: !!errors.date,
-                        helperText: errors.date?.message,
-                      },
-                    }}
-                  />
-                )}
+                render={({ field }) => <StaticDatePicker {...field} />}
               />
             </FormControl>
             <FormControl fullWidth margin='normal'>
