@@ -30,15 +30,17 @@ const MyAppointments: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [pageAppointmentResponseData, setPageAppointmentResponseData] =
     useState<PageRequestResponseData<Appointment> | undefined>(undefined);
-  const [requestParams, setRequestParams] = useState<PageRequestParams>({});
+  const [requestParams, setRequestParams] = useState<
+    PageRequestParams | undefined
+  >({});
   const tableHelper = useMemo(() => new TableHelper(), []);
 
   const loadAppointments = useCallback(async () => {
     if (!authData?.id) return;
     try {
       const response = await getPagedPatientAppointments(
-        requestParams,
         authData.id,
+        requestParams,
       );
       setAppointments(response.content);
       setPageAppointmentResponseData(response);
@@ -106,7 +108,7 @@ const MyAppointments: React.FC = () => {
     loadAppointments().then(() => {});
   }, [loadAppointments]);
 
-  const handlePageChange = (params: ExaminationPageRequestParams) => {
+  const handlePageChange = (params?: ExaminationPageRequestParams) => {
     setRequestParams(params);
   };
 

@@ -34,13 +34,14 @@ const Examinations: React.FC<ExaminationsProps> = ({ doctor }) => {
   const [examinations, setExaminations] = useState<Examination[]>([]);
   const [pageExaminationResponseData, setPageExaminationResponseData] =
     useState<PageRequestResponseData<Examination>>();
-  const [requestParams, setRequestParams] =
-    useState<ExaminationPageRequestParams>({
-      'doctor-ids': [doctor.id],
-    });
+  const [requestParams, setRequestParams] = useState<
+    ExaminationPageRequestParams | undefined
+  >({
+    'doctor-ids': [doctor.id],
+  });
 
   const loadDoctorExaminations = useCallback(
-    async (params: ExaminationPageRequestParams) => {
+    async (params?: ExaminationPageRequestParams) => {
       showSpinner();
       try {
         const response = await fetchPagedDoctorExaminations(params);
@@ -75,7 +76,7 @@ const Examinations: React.FC<ExaminationsProps> = ({ doctor }) => {
     loadDoctorExaminations(requestParams).then(() => {});
   }, [loadDoctorExaminations, requestParams]);
 
-  const handlePageChange = (params: ExaminationPageRequestParams) => {
+  const handlePageChange = (params?: ExaminationPageRequestParams) => {
     setRequestParams(params);
   };
 

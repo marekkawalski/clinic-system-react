@@ -45,8 +45,8 @@ const ManageAppointments: React.FC = () => {
     if (!doctorId) return;
     try {
       const response = await getPagedDoctorAppointments(
-        requestParams,
         doctorId,
+        requestParams,
       );
       setAppointments(response.content);
       setPageAppointmentResponseData(response);

@@ -37,8 +37,8 @@ export const useAppointment = () => {
 
   const getPagedDoctorAppointments = useCallback(
     async (
-      appointmentPageRequestParams: AppointmentPageRequestParams,
       doctorId: string,
+      appointmentPageRequestParams?: AppointmentPageRequestParams,
     ): Promise<PageRequestResponseData<Appointment>> => {
       const response = await axiosInstance.get<
         PageRequestResponseData<Appointment>
@@ -55,8 +55,8 @@ export const useAppointment = () => {
 
   const getPagedPatientAppointments = useCallback(
     async (
-      params: AppointmentPageRequestParams,
       userId: string,
+      params?: AppointmentPageRequestParams,
     ): Promise<PageRequestResponseData<Appointment>> => {
       const response = await axiosInstance.get<
         PageRequestResponseData<Appointment>

@@ -21,7 +21,7 @@ export const useExamination = () => {
 
   const fetchPagedDoctorExaminations = useCallback(
     async (
-      params: ExaminationPageRequestParams,
+      params?: ExaminationPageRequestParams,
     ): Promise<PageRequestResponseData<Examination>> => {
       const response = await axiosInstance.get<
         PageRequestResponseData<Examination>
