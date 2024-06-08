@@ -78,12 +78,13 @@ const Login = () => {
                     helperText={errors.email?.message}
                     variant='outlined'
                     type='text'
+                    id='email-input'
                   />
                 </FormControl>
                 <FormControl fullWidth margin='normal' variant='outlined'>
                   <InputLabel htmlFor='password'>Password</InputLabel>
                   <OutlinedInput
-                    id='password'
+                    id='password-input'
                     type={showPassword ? 'text' : 'password'}
                     {...register('password')}
                     error={!!errors.password}
@@ -112,7 +113,12 @@ const Login = () => {
                 </FormControl>
                 <Box className='container'>
                   <Box className='button-container'>
-                    <Button type='submit' variant='contained' color='primary'>
+                    <Button
+                      type='submit'
+                      variant='contained'
+                      color='primary'
+                      id='submit-btn'
+                    >
                       Login
                     </Button>
                   </Box>

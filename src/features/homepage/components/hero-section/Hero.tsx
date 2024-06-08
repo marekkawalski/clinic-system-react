@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 
 function Hero() {
   return (
-    <div className='hero-wrapper page-wrapper'>
+    <div className='hero-wrapper page-wrapper' id='hero'>
       <div>
         <h1>Delivering cutting edge medical systems</h1>
         <Button
