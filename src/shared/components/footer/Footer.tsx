@@ -6,6 +6,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import './Footer.scss';
+import doctorImage from '@/assets/images/medical-doctor.webp';
 
 const Footer: React.FC = () => {
   return (
@@ -20,7 +21,7 @@ const Footer: React.FC = () => {
           alt='line'
           className='line doctor-img'
           height='4812'
-          src='src/assets/images/medical-doctor.webp'
+          src={doctorImage}
           width='2863'
         />
         <div className='contact-info'>

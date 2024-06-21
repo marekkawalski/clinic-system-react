@@ -11,6 +11,7 @@ import DoctorInfo from '@/features/doctors/components/doctor-info/DoctorInfo.tsx
 import Examinations from '@/features/doctors/components/examinations/Examinations.tsx';
 import DoctorSchedule from '@/features/doctors/components/doctor-schedule/DoctorSchedule.tsx';
 import ScheduleAppointment from '@/features/doctors/components/schedule-appointment/ScheduleAppointment.tsx';
+import femaleDoctor from '@/assets/images/female-doctor.webp';
 
 const DoctorDetails: React.FC = () => {
   const { email } = useParams<{ email: string }>();
@@ -49,7 +50,7 @@ const DoctorDetails: React.FC = () => {
           <Box className='doctor-image'>
             <img
               alt={`${doctor.name} ${doctor.surname}`}
-              src='/src/assets/images/female-doctor.webp'
+              src={femaleDoctor}
             />
           </Box>
 

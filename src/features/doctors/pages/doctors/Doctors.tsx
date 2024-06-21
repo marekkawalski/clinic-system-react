@@ -12,6 +12,7 @@ import { Button } from '@mui/material';
 import { useDoctor } from '@/features/doctors/hooks/useDoctor.tsx';
 import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
+import femaleDoctor from '@/assets/images/female-doctor.webp';
 
 const Doctors: React.FC = () => {
   const { fetchPagedDoctors } = useDoctor();
@@ -60,7 +61,7 @@ const Doctors: React.FC = () => {
             <div className='doctor-image'>
               <img
                 alt={doctor.name}
-                src='src/assets/images/female-doctor.webp'
+                src={femaleDoctor}
               />
             </div>
             <div className='doctor-info'>
