@@ -24,7 +24,7 @@ const AddUserComponent: React.FC<AddUserComponentProps> = ({
             <Button onClick={onClose} color='primary'>
               Cancel
             </Button>
-            <Button type='submit' form='userForm' color='primary'>
+            <Button type='submit' form='userForm' color='primary' id={'submit-button'}>
               Save
             </Button>
           </DialogActions>

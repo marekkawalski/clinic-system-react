@@ -143,6 +143,7 @@ const ManageUsersPage: React.FC = () => {
   const handleCloseEditDialog = () => {
     setSelectedUser(null);
     setOpenEditDialog(false);
+    fetchPagedUsers();
   };
 
   const handleOpenAddDialog = () => {
@@ -151,6 +152,7 @@ const ManageUsersPage: React.FC = () => {
 
   const handleCloseAddDialog = () => {
     setOpenAddDialog(false);
+    fetchPagedUsers();
   };
 
   return (
@@ -163,6 +165,7 @@ const ManageUsersPage: React.FC = () => {
             color='primary'
             variant='contained'
             startIcon={<Add />}
+            id='add-user-button'
           >
             Add user
           </Button>
@@ -182,11 +185,6 @@ const ManageUsersPage: React.FC = () => {
         </Typography>
       ) : (
         <Box>
-          <PaginatorComponent
-            onPageChange={handlePageChange}
-            data={pageUserResponseData}
-            requestParams={requestParams}
-          />
           <TableContainer className='table-wrapper'>
             <Table className='mat-elevation-z8'>
               <TableHead>

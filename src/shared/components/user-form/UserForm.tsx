@@ -189,6 +189,7 @@ const UserForm: React.FC<{
                         <TextField
                           {...field}
                           label='Name'
+                          id='name-input'
                           error={!!errors.basicData?.name}
                           helperText={errors.basicData?.name?.message}
                         />
@@ -203,6 +204,7 @@ const UserForm: React.FC<{
                         <TextField
                           {...field}
                           label='Surname'
+                          id='surname-input'
                           error={!!errors.basicData?.surname}
                           helperText={errors.basicData?.surname?.message}
                         />
@@ -217,6 +219,7 @@ const UserForm: React.FC<{
                         <TextField
                           {...field}
                           label='Email'
+                          id='email-input'
                           error={!!errors.basicData?.email}
                           helperText={errors.basicData?.email?.message}
                         />
@@ -231,6 +234,7 @@ const UserForm: React.FC<{
                         <TextField
                           {...field}
                           label='Phone Number'
+                          id='phoneNumber-input'
                           error={!!errors.basicData?.phoneNumber}
                           helperText={errors.basicData?.phoneNumber?.message}
                         />
@@ -244,6 +248,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id='pesel-input'
                           label='PESEL'
                           error={!!errors.basicData?.pesel}
                           helperText={errors.basicData?.pesel?.message}
@@ -258,6 +263,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'password-input'}
                           label='Password'
                           type='password'
                           error={!!errors.basicData?.password}
@@ -273,6 +279,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'confirmPassword-input'}
                           label='Confirm Password'
                           type='password'
                           error={!!errors.basicData?.confirmPassword}
@@ -293,6 +300,7 @@ const UserForm: React.FC<{
                         <TextField
                           {...field}
                           label='Country'
+                          id='country-input'
                           error={!!errors.address?.country}
                           helperText={errors.address?.country?.message}
                         />
@@ -306,6 +314,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id='city-input'
                           label='City'
                           error={!!errors.address?.city}
                           helperText={errors.address?.city?.message}
@@ -320,6 +329,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'street-input'}
                           label='Street'
                           error={!!errors.address?.street}
                           helperText={errors.address?.street?.message}
@@ -334,6 +344,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'postalCode-input'}
                           label='Postal Code'
                           error={!!errors.address?.postalCode}
                           helperText={errors.address?.postalCode?.message}
@@ -348,6 +359,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'houseNumber-input'}
                           label='House Number'
                           error={!!errors.address?.houseNumber}
                           helperText={errors.address?.houseNumber?.message}
@@ -362,6 +374,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
+                          id={'apartmentNumber-input'}
                           label='Apartment Number'
                           error={!!errors.address?.apartmentNumber}
                           helperText={errors.address?.apartmentNumber?.message}
@@ -471,7 +484,7 @@ const UserForm: React.FC<{
               </div>
               <Box mt={4}>
                 {children || (
-                  <Button type='submit' variant='contained' color='primary'>
+                  <Button type='submit' variant='contained' color='primary' id={'submit-button'}>
                     Submit
                   </Button>
                 )}

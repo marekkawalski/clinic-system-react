@@ -49,6 +49,7 @@ const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
       <FormControl
         variant='outlined'
         style={{ minWidth: 120, marginRight: 20 }}
+        id='page-size-select'
       >
         <InputLabel id='page-size-label'>Page Size</InputLabel>
         <Select
@@ -56,12 +57,13 @@ const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
           value={requestParams['page-size'] ?? 10}
           onChange={handlePageSizeChange}
           label='Page Size'
+          id="page-size-select-input"
         >
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={50}>50</MenuItem>
-          <MenuItem value={100}>100</MenuItem>
+          {[5, 10, 15, 20, 50, 100].map((size) => (
+            <MenuItem key={size} value={size} id={`page-size-option-${size}`}>
+              {size}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <Pagination
@@ -71,6 +73,7 @@ const PaginatorComponent: React.FC<PaginatorComponentProps> = ({
         page={(requestParams['page-num'] ?? 0) + 1}
         onChange={handlePageChange}
         sx={{ marginTop: 5, marginBottom: 10 }}
+        data-testid="pagination"
       />
     </Box>
   );
