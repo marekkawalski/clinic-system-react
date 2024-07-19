@@ -12,6 +12,8 @@ export default defineConfig({
       '@mui/icons-material',
       '@mui/x-date-pickers',
       'date-fns',
+      'react',
+      'react-dom',
     ],
   },
   resolve: {
@@ -25,7 +27,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', '@mui/material'],
-          // Define other chunks as needed
         },
       },
     },
