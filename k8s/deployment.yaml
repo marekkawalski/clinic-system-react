@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: clinic-system-react
-          image: clinic-system-react:0.0.1
+          image: clinic-system-react:0.0.3
           resources:
             requests:
               cpu: '1'
@@ -56,7 +56,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-      name: clinic-system-react-ingress
+    name: clinic-system-react-ingress
   name: clinic-system-react-ingress
   namespace: clinic-system
 spec:

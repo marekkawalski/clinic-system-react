@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Button,
@@ -46,7 +40,6 @@ const ManageUsersPage: React.FC = () => {
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
   const [openAddDialog, setOpenAddDialog] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const isFirstRender = useRef(true);
 
   const fetchPagedUsers = useCallback(async () => {
     showSpinner();
@@ -112,10 +105,6 @@ const ManageUsersPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
     fetchPagedUsers();
   }, [fetchPagedUsers, requestParams]);
 
