@@ -211,6 +211,7 @@ const ManageUsersPage: React.FC = () => {
                       <IconButton
                         onClick={() => handleOpenEditDialog(row)}
                         color='primary'
+                        className='edit-user-button'
                       >
                         <Edit />
                       </IconButton>
@@ -229,6 +230,7 @@ const ManageUsersPage: React.FC = () => {
             open={openEditDialog}
             onClose={handleCloseEditDialog}
             user={selectedUser}
+            key={selectedUser?.id}
           />
           <AddUserComponent
             open={openAddDialog}

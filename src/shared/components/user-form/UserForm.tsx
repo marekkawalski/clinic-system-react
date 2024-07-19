@@ -26,6 +26,7 @@ import { useAuth } from '@/core/authentication/hooks/useAuth.tsx';
 import { userFormSchema } from './validation/userFormSchema.tsx';
 import { FormType } from '@/shared/enums/FormType.ts';
 import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
+import { useSpinner } from '@/shared/spinner/hooks/useSpinner.tsx';
 
 type UserFormSchema = ReturnType<typeof userFormSchema>;
 type userFormInputs = z.infer<UserFormSchema>;
@@ -80,9 +81,11 @@ const UserForm: React.FC<{
   const { showSnackbar } = useSnackbar();
   const { checkAccess } = useAuth();
   const role = watch('adminManagedData.role');
+  const { showSpinner, hideSpinner } = useSpinner();
 
   useEffect(() => {
     if (userId) {
+      showSpinner();
       getUserById(userId).then(user => {
         const initialValues: UserFormData = {
           basicData: {
@@ -109,9 +112,10 @@ const UserForm: React.FC<{
           };
         }
         reset(initialValues);
+        hideSpinner();
       });
     }
-  }, [userId, getUserById, reset]);
+  }, [userId, getUserById, reset, showSpinner, hideSpinner]);
 
   const onSubmit: SubmitHandler<UserFormData> = async (
     formData,
@@ -150,9 +154,9 @@ const UserForm: React.FC<{
           `User ${response.name} ${response.surname} updated successfully`,
           'success',
         );
-      }
-      if (formType === FormType.PopupForm && onClose) {
-        onClose();
+        if (formType === FormType.PopupForm && onClose) {
+          onClose();
+        }
       }
       return;
     }
@@ -162,9 +166,9 @@ const UserForm: React.FC<{
         `User ${response.name} ${response.surname} registered successfully`,
         'success',
       );
-    }
-    if (formType === FormType.PopupForm && onClose) {
-      onClose();
+      if (formType === FormType.PopupForm && onClose) {
+        onClose();
+      }
     }
   };
 
@@ -179,7 +183,7 @@ const UserForm: React.FC<{
           <CardHeader title={action} />
           <CardContent>
             <form id='userForm' onSubmit={handleSubmit(onSubmit)}>
-              <div className='form-grid '>
+              <div className='form-grid'>
                 <div>
                   <FormControl fullWidth margin='normal'>
                     <Controller
@@ -263,7 +267,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'password-input'}
+                          id='password-input'
                           label='Password'
                           type='password'
                           error={!!errors.basicData?.password}
@@ -279,7 +283,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'confirmPassword-input'}
+                          id='confirmPassword-input'
                           label='Confirm Password'
                           type='password'
                           error={!!errors.basicData?.confirmPassword}
@@ -329,7 +333,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'street-input'}
+                          id='street-input'
                           label='Street'
                           error={!!errors.address?.street}
                           helperText={errors.address?.street?.message}
@@ -344,7 +348,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'postalCode-input'}
+                          id='postalCode-input'
                           label='Postal Code'
                           error={!!errors.address?.postalCode}
                           helperText={errors.address?.postalCode?.message}
@@ -359,7 +363,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'houseNumber-input'}
+                          id='houseNumber-input'
                           label='House Number'
                           error={!!errors.address?.houseNumber}
                           helperText={errors.address?.houseNumber?.message}
@@ -374,7 +378,7 @@ const UserForm: React.FC<{
                       render={({ field }) => (
                         <TextField
                           {...field}
-                          id={'apartmentNumber-input'}
+                          id='apartmentNumber-input'
                           label='Apartment Number'
                           error={!!errors.address?.apartmentNumber}
                           helperText={errors.address?.apartmentNumber?.message}
@@ -484,7 +488,12 @@ const UserForm: React.FC<{
               </div>
               <Box mt={4}>
                 {children || (
-                  <Button type='submit' variant='contained' color='primary' id={'submit-button'}>
+                  <Button
+                    type='submit'
+                    variant='contained'
+                    color='primary'
+                    id='submit-button'
+                  >
                     Submit
                   </Button>
                 )}

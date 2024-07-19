@@ -18,10 +18,18 @@ const EditUserComponent: React.FC<EditUserComponentProps> = ({
   if (!user) {
     return null;
   }
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='lg' fullWidth>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth='lg'
+      fullWidth
+      id='edit-user-popup'
+    >
       <DialogContent sx={{ padding: 0, margin: 0 }}>
         <UserForm
+          key={user.id}
           userId={user.id}
           action='Edit User'
           formType={FormType.PopupForm}
@@ -31,7 +39,12 @@ const EditUserComponent: React.FC<EditUserComponentProps> = ({
             <Button onClick={onClose} color='primary'>
               Cancel
             </Button>
-            <Button type='submit' form='userForm' color='primary'>
+            <Button
+              type='submit'
+              form='userForm'
+              color='primary'
+              id='submit-button'
+            >
               Save
             </Button>
           </DialogActions>

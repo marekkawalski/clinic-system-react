@@ -13,7 +13,7 @@ const AddUserComponent: React.FC<AddUserComponentProps> = ({
   onClose,
 }) => {
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='lg' fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth='lg' fullWidth >
       <DialogContent sx={{ padding: 0, margin: 0 }}>
         <UserForm
           action='Add User'
