@@ -13,7 +13,7 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { Add, Edit } from '@mui/icons-material';
+import { Add, Delete, Edit } from '@mui/icons-material';
 import { PageRequestResponseData } from '@/shared/model/PageRequestResponseData.ts';
 import { UserPageRequestParams } from '@/shared/model/UserPageRequestParams.ts';
 import { User } from '@/core/models/user/User.ts';
@@ -26,11 +26,13 @@ import EditUserComponent from '../components/edit-user/EditUser.tsx';
 import PaginatorComponent from '@/shared/components/paginator/Paginator.tsx';
 import withAuth from '@/core/authentication/hoc/withAuth.tsx';
 import AddUserComponent from '@/features/manage-users/components/add-user/AddUser.tsx';
+import { useSnackbar } from '@/shared/snackbar/hooks/useSnackBar.tsx';
 
 const ManageUsersPage: React.FC = () => {
-  const { getPagedUsers } = useUser();
+  const { getPagedUsers, deleteUser } = useUser();
   const tableHelper = useMemo(() => new TableHelper(), []);
   const { showSpinner, hideSpinner } = useSpinner();
+  const { showSnackbar } = useSnackbar();
 
   const [dataSource, setDataSource] = useState<User[]>([]);
   const [pageUserResponseData, setPageUserResponseData] =
@@ -88,7 +90,7 @@ const ManageUsersPage: React.FC = () => {
           lastLogin: 'Last Login',
         },
       );
-      tableHelper.setAllColumnNames(['edit']);
+      tableHelper.setAllColumnNames(['edit', 'delete']);
     } finally {
       hideSpinner();
     }
@@ -144,6 +146,21 @@ const ManageUsersPage: React.FC = () => {
     fetchPagedUsers();
   };
 
+  async function handleDeleteUser(row: User) {
+    showSpinner();
+    try {
+      await deleteUser(row.id).then(() => {
+        showSnackbar(
+          `User with email ${row.email} deleted successfully`,
+          'success',
+        );
+        fetchPagedUsers();
+      });
+    } finally {
+      hideSpinner();
+    }
+  }
+
   return (
     <Container maxWidth='xl'>
       <Typography variant='h2'>Manage Users</Typography>
@@ -184,6 +201,7 @@ const ManageUsersPage: React.FC = () => {
                     </TableCell>
                   ))}
                   <TableCell>Edit</TableCell>
+                  <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -203,6 +221,15 @@ const ManageUsersPage: React.FC = () => {
                         className='edit-user-button'
                       >
                         <Edit />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell>
+                      <IconButton
+                        onClick={() => handleDeleteUser(row)}
+                        color='primary'
+                        className='delete-user-button'
+                      >
+                        <Delete />
                       </IconButton>
                     </TableCell>
                   </TableRow>

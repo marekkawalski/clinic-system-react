@@ -85,6 +85,18 @@ export const useUser = () => {
     [axiosInstance, showSpinner, hideSpinner, httpParamsHelper, dateHelper],
   );
 
+  const deleteUser = useCallback(
+    async (userId: string) => {
+      showSpinner();
+      try {
+        await axiosInstance.patch<void>(`/users/${userId}/disable`, {});
+      } finally {
+        hideSpinner();
+      }
+    },
+    [axiosInstance, showSpinner, hideSpinner],
+  );
+
   return {
     updateUser,
     getUserById,
@@ -92,5 +104,6 @@ export const useUser = () => {
     getPagedUsers,
     user,
     pagedUsers,
+    deleteUser,
   };
 };
