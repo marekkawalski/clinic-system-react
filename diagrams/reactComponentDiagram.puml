@@ -1,0 +1,281 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam wrapWidth 180
+skinparam maxMessageSize 180
+
+skinparam class {
+    AttributeFontSize 25
+    FontSize 25
+
+}
+
+skinparam package {
+    AttributeFontSize 30
+    FontSize 30
+
+}
+
+' Set page size to A4 vertical with margins
+skinparam page {
+    size A4
+    orientation portrait
+    margin 10
+}
+
+' Use vertical layout for overall structure
+top to bottom direction
+
+package features {
+    ' First column
+    package homepage {
+        package components {
+            package features_section {
+                class FeaturesSection
+            }
+            package hero_section {
+                class HeroSection
+            }
+        }
+        package pages {
+            class Homepage
+        }
+    }
+
+    package auth {
+        package login {
+            class Login
+        }
+        package registration {
+            class Registration
+        }
+    }
+
+    package doctors {
+        package components {
+            package doctor_info {
+                class DoctorInfo
+            }
+            package doctor_schedule {
+                class DoctorSchedule
+            }
+            package examinations {
+                class Examinations
+            }
+            package schedule_appointment {
+                class ScheduleAppointment
+            }
+        }
+        package hooks {
+            class useDoctor
+            class useExamination
+        }
+        package model {
+            class DoctorModel
+        }
+        package pages {
+            class Doctors
+            class DoctorDetails
+        }
+    }
+
+    ' Hidden line to create space for second column and align homepage with manage_appointments
+    homepage -[hidden]right-> manage_appointments
+
+    ' Second column
+    package manage_appointments {
+        package components {
+            package appointment_form {
+                class AppointmentForm
+            }
+        }
+        package pages {
+            class ManageAppointments
+            class Appointment
+        }
+    }
+
+    package manage_users {
+        package components {
+            package add_user {
+                class AddUser
+            }
+            package edit_user {
+                class EditUser
+            }
+        }
+        package pages {
+            class ManageUsersPage
+        }
+    }
+
+    package my_appointments {
+        package pages {
+            class MyAppointments
+        }
+    }
+
+    ' Align columns
+    homepage -[hidden]down-> auth
+    auth -[hidden]down-> doctors
+
+    manage_appointments -[hidden]down-> manage_users
+    manage_users -[hidden]down-> my_appointments
+}
+
+package app {
+    class App
+}
+
+class Router
+
+package core {
+    left to right direction
+
+    package authentication {
+        package context {
+            class AuthContext
+        }
+        package hoc {
+            class withAuth
+        }
+        package hooks {
+            class useAuth
+            class useRegister
+        }
+        class axiosInstance
+    }
+
+    package constants {
+        class PathConstants
+    }
+
+    package enums {
+        enum UserRole
+        enum AppointmentStatus
+        enum ExaminationStatus
+    }
+
+    package hooks {
+        class useUser
+    }
+
+    package models {
+        package appointment {
+            class Appointment
+        }
+        package user {
+            class Address
+            class AuthData
+            class Doctor
+            class DoctorDetails
+            class Examination
+        }
+    }
+
+    authentication -[hidden]-> constants
+    authentication -[hidden]-> enums
+    authentication -[hidden]-> hooks
+    authentication -[hidden]-> models
+    constants -[hidden]-> enums
+    constants -[hidden]-> hooks
+    constants -[hidden]-> models
+    enums -[hidden]-> hooks
+    enums -[hidden]-> models
+    hooks -[hidden]-> models
+}
+
+package shared {
+    left to right direction
+
+    package components {
+        package footer {
+            class Footer
+        }
+        package nav {
+            class Nav
+            class NavItem
+        }
+        package paginator {
+            class Paginator
+        }
+        package user_form {
+            class UserForm
+        }
+    }
+
+    package enums {
+        enum FormType
+    }
+
+    package helpers {
+        class DateHelper
+        class HttpParamsHelper
+        class TableHelper
+    }
+
+    package hooks {
+        class useAppointment
+        class useFormDialog
+    }
+
+    package model {
+        class AppointmentPageRequestParams
+        class ExaminationPageRequestParams
+        class PageRequestParams
+        class PageRequestResponseData
+        class UserPageRequestParams
+    }
+
+    package snackbar {
+        package context {
+            class SnackBarContext
+        }
+        package hooks {
+            class useSnackBar
+        }
+    }
+
+    package spinner {
+        package context {
+            class SpinnerContext
+        }
+        package hooks {
+            class useSpinner
+        }
+    }
+
+    components -[hidden]-> enums
+    components -[hidden]-> helpers
+    components -[hidden]-> hooks
+    components -[hidden]-> model
+    components -[hidden]-> snackbar
+    components -[hidden]-> spinner
+    enums -[hidden]-> helpers
+    enums -[hidden]-> hooks
+    enums -[hidden]-> model
+    enums -[hidden]-> snackbar
+    enums -[hidden]-> spinner
+    helpers -[hidden]-> hooks
+    helpers -[hidden]-> model
+    helpers -[hidden]-> snackbar
+    helpers -[hidden]-> spinner
+    hooks -[hidden]-> model
+    hooks -[hidden]-> snackbar
+    hooks -[hidden]-> spinner
+    model -[hidden]-> snackbar
+    model -[hidden]-> spinner
+    snackbar -[hidden]-> spinner
+}
+App --> Router : uses
+
+Nav --> NavItem
+
+Router --> features : routes
+
+features --> core : uses
+features --> shared : uses
+
+features -[hidden]down-> app
+app -[hidden]down-> core
+
+@enduml
