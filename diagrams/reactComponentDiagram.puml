@@ -272,7 +272,7 @@ Nav --> NavItem
 
 Router --> features : routes
 
-features --> core : uses
+features --> core
 features --> shared : uses
 
 features -[hidden]down-> app
