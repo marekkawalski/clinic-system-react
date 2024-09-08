@@ -18,7 +18,7 @@ const AddUserComponent: React.FC<AddUserComponentProps> = ({
       onClose={onClose}
       maxWidth='lg'
       fullWidth
-      id={'addUserButton'}
+      id={'addUserPopup'}
     >
       <DialogContent sx={{ padding: 0, margin: 0 }}>
         <UserForm
