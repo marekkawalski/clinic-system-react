@@ -1,30 +1,77 @@
-# React + TypeScript + Vite
+# Clinic System React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a frontend for an application designed to manage a 
+small medical clinic. It is built using React and MUI. 
+The project can be run locally or deployed to a Kubernetes cluster. 
+The system can be used as a frontend for the following backend project: [Clinic System](https://github.com/marekkawalski/clinic-system).
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- TOC -->
+* [Clinic System React](#clinic-system-react)
+  * [Table of Contents](#table-of-contents)
+  * [Running project locally](#running-project-locally)
+    * [Prerequisites](#prerequisites)
+    * [Setup](#setup)
+    * [Running the Project](#running-the-project)
+  * [Deployment to Kubernetes](#deployment-to-kubernetes)
+    * [Prerequisites](#prerequisites-1)
+    * [Setup](#setup-1)
+    * [Running the Project](#running-the-project-1)
+<!-- TOC -->
 
-## Expanding the ESLint configuration
+Clone the repository and navigate to the project directory
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/marekkawalski/clinic-system-react.git && cd clinic-system-react
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Running project locally
+
+### Prerequisites
+
+- Node.js 20.x or higher
+- npm
+
+### Setup
+
+1. Install the dependencies
+
+```bash
+npm i
+```
+
+### Running the Project
+1. Run the following command to start the application:
+```bash
+npm start
+```
+2. Open the browser and navigate to `http://localhost:3000/`
+3. The application should be running
+
+## Deployment to Kubernetes
+
+### Prerequisites
+- Docker deamon, example: [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- Kubernetes cluster, example: [Minikube](https://minikube.sigs.k8s.io/docs/start/)
+- kubectl
+
+### Setup
+1. Add React app host to the hosts file
+```bash
+sudo echo '127.0.0.1       react.clinic.system.com'
+>> ~/etc/hosts
+```
+
+2. Run the following command to build the Docker image:
+```bash
+docker build . -t clinic-system-react:0.0.3
+```
+
+3. Run the following command to deploy the application to Kubernetes:
+```bash
+kubectl apply -f k8s/deployment.yaml
+```
+### Running the Project
+1. Open the browser and navigate to http://react.clinic.system.com/
+2. The application should be running
